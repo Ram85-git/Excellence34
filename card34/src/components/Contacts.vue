@@ -128,12 +128,15 @@ export default{
     padding-left: 48px;
     
 }
+
 .contentsmall_first :first-child{
-    color: #364140;
+    color: rgba(54, 65, 64, 0.64);
 }
-.contentsmall_first :second-child{
-    color: black;
+
+.contentsmall_first a{
+    color: #00AC99;
 }
+
 .contactform{
     display: flex;
 }
