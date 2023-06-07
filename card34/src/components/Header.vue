@@ -68,6 +68,7 @@ export default {
 .header-main nav .list ul {
     display: flex;
     list-style-type: none;
+    
     color: rgb(54, 65, 64, 0.64);
     margin-top: 34px;
     margin-bottom: 42px;
@@ -84,6 +85,9 @@ export default {
     
    
 
+}
+.btn dropdown-toggle{
+    color: rgba(54, 65, 64, 0.32);
 }
 
 
