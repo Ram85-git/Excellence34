@@ -1,10 +1,20 @@
 <template>
 
+
+<div class="line">
+    <div style="text-align: center;margin: auto; width: 1200px;">
+        <hr id="hr1"  >
+        <img style="margin-top: -60px;" src="../assets/upword1.png">
+    </div>
+  </div> 
+
+<br><br><br>
 <footer >
+<!--      
  <div class="line">
     <hr id="hr1" >
     <img src="../assets/upword1.png">
-  </div>
+  </div>  -->
 
   <!-- <div id="hotc"></div> -->
  <div class="footerbottom">
@@ -89,6 +99,7 @@ export default{
 <style scoped>
 footer {
     display: flex;
+    justify-content: end;
     max-width: 1300px;
     /* margin: auto; */
     /* padding: 0px 15px; */
@@ -98,27 +109,32 @@ footer {
     background-repeat: no-repeat;
     /* border: 1px solid; */
     margin-top: 50px;
+    text-align: center;
+    /* width: ; */
+    max-width: 1400px;
+    margin: auto;
 }
+/* 
 #hr1{
     margin-top: -243px;
     height:1px; 
     width: 1100px; color:gray;
     padding-left: 100px;
-    /* margin: auto; */
+    margin: auto;
     
-}
-footer .line{
+} */
+/* footer .line{
     display: flex;
     flex-direction: column;
     margin: auto;
-}
-footer .line img{
+} */
+/* footer .line img{
     border-radius: 50%;
     height: 30px;
     width: 40px;
     margin: auto;
     margin-top: -33px;
-}
+} */
 .footerbottom{
     display: flex;
     height: 400px;
@@ -133,7 +149,7 @@ footer .line img{
     display: flex;
     justify-content: space-between;
     width: 1200px;
-    margin-left: 10px;
+    margin-left: -50px;
     /* border: 2px solid; */
     margin-top: 120px;
 
