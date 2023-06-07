@@ -8,9 +8,9 @@
                 </div>
                 <div class="list">
                     <ul>
-                        <li>EXCHANGE</li>
-                        <li>BNPL</li>
-                        <li>CARDS</li>
+                        <li class="item">EXCHANGE</li>
+                        <li class="item">BNPL</li>
+                        <li class="item">CARDS</li>
                     </ul>
                 </div>
                 <div class="dropdown">
@@ -50,8 +50,13 @@ export default {
 .header{
     height: 96px;
     /* background-color: aqua; */
-    /* margin: auto; */
-   
+    margin: auto;
+   max-width: 1400px;
+   /* justify-content: center; */
+   text-align: center;
+   /* border: 2px solid; */
+   /* display: flex; */
+
 }
 .header-main nav {
     display: flex;
@@ -60,9 +65,6 @@ export default {
     /* background-color: aqua; */
     align-items: center;
     
-    
-
-
 }
 
 .header-main nav .list ul {
@@ -74,12 +76,23 @@ export default {
     margin-bottom: 42px;
    gap:40px
 }
+.item {
+    font-family: Montserrat;
+    font-style: ExtraBold;
+    font-size: 16px;
+    line-height: 20px;
+     line-height: 17px;
+     color: #364140;
+    font-weight: 600;
+    color: rgba(54, 65, 64, 0.64);
+    font-family: 'Montserrat';
+   
 .header-main nav .dropdown{
     display: flex;
     color:  rgb(54, 65, 64, 0.64);
     gap:40px;
     font-size: 20px;
-    font-weight: 800px;
+    font-weight: 600;
     margin-top: 34px;
     margin-bottom: 42px;
     
