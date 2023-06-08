@@ -1,12 +1,17 @@
 <template>
 
-
+<!-- 
 <div class="line">
     <div style="text-align: center;margin: auto; width: 1200px;">
         <hr id="hr1"  >
         <img style="margin-top: -60px;" src="../assets/upword1.png">
     </div>
-  </div> 
+  </div>   -->
+  
+  <div class="line">
+        <img src="../assets/upword1.png" alt="">
+    </div>
+
 
 <br><br><br>
 <footer >
@@ -97,6 +102,20 @@ export default{
 </script>
 
 <style scoped>
+
+.line{
+            border: .5px solid rgba(54, 65, 64, 0.16);
+            max-width: 1180px;
+            text-align: center;
+            margin: auto;
+            margin-top: 50px;
+            height: .5px;
+            
+
+        }
+        .line img{
+            margin-top: -32px;
+        }
 footer {
     display: flex;
     justify-content: end;
@@ -157,7 +176,9 @@ footer {
 .footerlogo{
     /* display: flex; */
     flex-direction: row;
+
     /* gap: 40px; */
+    text-align: left;
     
 }
 .footericon img {

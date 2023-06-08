@@ -43,28 +43,94 @@
             <h5>Contact Form</h5>
             <div class="smallform">
                 <div class="formname">
-                    <input type="text" class="name" placeholder="Name">
+                    <input type="text" class="name" placeholder="Name" v-model="name">
                 </div>
                 <div class="formemail">
-                    <input type="email"  placeholder="Email">
+                    <input type="email"  placeholder="Email" v-model="email">
                 </div>
                 <div class="formMessage">
-                    <input id="message" type="text" placeholder="Message">
+                    <input id="message" type="text" placeholder="Message" v-model="message">
                 </div>
-
+               
             </div>
-            <button type="button" class="btn btn-primary btn-sm">Send</button>
+            <button type="button" v-on:click.prevent="submit()" class="btn btn-primary btn-sm">Send</button>
         </div>
 
     </div>
   </div>
+  <br> 
+  <table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+    </tr>
+    <tr v-for="item in list" :key="item" id="item">
+        <td>{{ item.name}}</td>
+        <td>{{ item.email}}</td>
+        <td>{{ item.message}}</td>
+    </tr>
+</table>
+
+      
+
+     <!-- <div>
+        <p>Name: {{ name }}</p>
+        <p>Email: {{ email }}</p>
+        <p>Message: {{ message }}</p>
+     </div> -->
 
 </template>
 
 
 <script>
+// import firebase from '@/firebase';
+// import { projectFirestore } from '../firebase/config'
+
+
 export default{
-    name:`Contacts`
+    name:`Contacts`,
+    data(){
+        return{
+            name:'',
+            email:'',
+            message:'',
+            list:[]
+        }
+        
+    },
+    methods:{
+        submit:function() {
+            console.log("Entered value ");
+            console.log(this.name,) 
+            console.log(this.email,) 
+            console.log(this.message,) 
+
+            this.list.push({
+             
+                'name': this.name,
+                'email':this.email,
+                'message':this.message
+            });
+            this.name="",
+            this.email="",
+            this.message=""
+            // let userMessage =
+            
+            // name:
+            // email:
+            // message:
+
+    
+
+            // projectFirestore.collection('userMessages').add(userMessage)
+
+           
+        }
+
+    }
+
+
 }
 
 
@@ -73,6 +139,56 @@ export default{
 
 <style scoped>
  
+
+ table {
+    margin: auto;
+    /* border-radius: 30px; */
+    background-color: ;
+    
+ }
+
+ table tr {
+    /* border: 1px solid green; */
+    height: 80px;
+    width:  40px;
+    margin-top: 10px;
+    color: #364140;
+    
+    /* border-radius: 30px; */
+    /* border-radius: 30%; */
+    /* border-bottom-left-radius: 16px; */
+}
+/* 
+table tr:nth-child(n+1){
+    border: 1px saddlebrown;
+} */
+
+table tr  th {
+    /* border: 1px solid brown; */
+    /* border-radius: 16px; */
+    height:  20px;
+    width: 350px;
+    text-align: center;
+    color: #364140;
+    background-color: rgba(54, 65, 64, 0.04);
+    font-weight: 700;
+    border-radius: 30px;
+    
+}
+table tr td {
+    /* border: 1px solid brown; */
+    height:  20px;
+    background-color: rgba(54, 65, 64, 0.04);
+    width: 300px;
+    text-align: center;
+    color: #364140;
+    font-weight: 700;
+    border-radius: 30px;
+    /* margin-top: 20px; */
+    /* padding-top: 20px; */
+}
+
+
 .contacts{
     height: 128px;
     border-radius: 32px;
