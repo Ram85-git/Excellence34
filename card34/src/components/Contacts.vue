@@ -41,7 +41,9 @@
     <div class="contactform">
         <div class="bigform">
             <h5>Contact Form</h5>
-            <div class="smallform">
+            <!-- class = small form -->
+            <!-- <div class="smallform"> -->
+            <form class="small-form">
                 <div class="formname">
                     <input type="text" class="name" placeholder="Name" v-model="name">
                 </div>
@@ -49,11 +51,17 @@
                     <input type="email"  placeholder="Email" v-model="email">
                 </div>
                 <div class="formMessage">
-                    <input id="message" type="text" placeholder="Message" v-model="message">
+                    <input  type="text" placeholder="Message" v-model="message">
                 </div>
+            </form>
                
-            </div>
-            <button type="button" v-on:click.prevent="submit()" class="btn btn-primary btn-sm">Send</button>
+            <!-- </div> -->
+            <!-- <button type="button" v-on:click.prevent="submit()" class="btn btn-primary btn-sm">Send</button> -->
+            <button type="button" @click="
+            saveUserDetails();
+             submit();" class="btn btn-primary btn-sm">Send</button>
+        
+        
         </div>
 
     </div>
@@ -61,6 +69,7 @@
   <br> 
   <table>
     <tr>
+        
         <th>Name</th>
         <th>Email</th>
         <th>Message</th>
@@ -74,67 +83,63 @@
 
       
 
-     <!-- <div>
-        <p>Name: {{ name }}</p>
-        <p>Email: {{ email }}</p>
-        <p>Message: {{ message }}</p>
-     </div> -->
-
+    
 </template>
 
 
 <script>
-// import firebase from '@/firebase';
-// import { projectFirestore } from '../firebase/config'
+
+import {  db } from '@/firebase/config';
+import { addDoc, collection } from '@firebase/firestore';
+
 
 
 export default{
     name:`Contacts`,
     data(){
         return{
-            name:'',
-            email:'',
-            message:'',
-            list:[]
-        }
-        
-    },
-    methods:{
-        submit:function() {
-            console.log("Entered value ");
-            console.log(this.name,) 
-            console.log(this.email,) 
-            console.log(this.message,) 
-
-            this.list.push({
-             
-                'name': this.name,
-                'email':this.email,
-                'message':this.message
-            });
-            this.name="",
-            this.email="",
-            this.message=""
-            // let userMessage =
             
-            // name:
-            // email:
-            // message:
-
-    
-
-            // projectFirestore.collection('userMessages').add(userMessage)
+            name: '',
+            email: '',
+            message: '',
+            lists:[],
 
            
         }
+        
+    },
 
+    methods:{
+         async saveUserDetails() {
+            try {
+                const docRef = await addDoc(collection(db, "users"),{
+                    name: this.name,
+                    email: this.email,
+                    message:this.message
+                });
+
+            console.log("Documet form with id" , docRef.id);
+            this.name = '',
+            this.email='',
+            this.message=''
+            }
+            catch(error){
+                console.log("Error adding doc", error)
+            }
+        },
+        submit:function(name, email,message){
+            this.lists.push({
+            'name': name,
+            'email': email,
+             'message': message
+            });
+        
+        
+          
+        }
+    
     }
-
-
 }
-
-
-
 </script>
 
 <style scoped>
@@ -143,7 +148,9 @@ export default{
  table {
     margin: auto;
     /* border-radius: 30px; */
-    background-color: ;
+    /* background-color: ; */
+    /* border: 2px solid green; */
+    /* background-color: rgba(54, 65, 64, 0.04); */
     
  }
 
