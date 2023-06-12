@@ -57,7 +57,7 @@
                
             <!-- </div> -->
             <!-- <button type="button" v-on:click.prevent="submit()" class="btn btn-primary btn-sm">Send</button> -->
-            <button type="button" @click="
+            <button type="button" v-on:click.prevent="
             saveUserDetails();
              submit();" class="btn btn-primary btn-sm">Send</button>
         
@@ -67,14 +67,15 @@
     </div>
   </div>
   <br> 
-  <table>
+  <table v-if="showTable">
     <tr>
-        
-        <th>Name</th>
+        <th id="heading" v-for="heading in tableHeadings" :key="heading">{{ heading }}</th>
+
+        <!-- <th>Name</th>
         <th>Email</th>
-        <th>Message</th>
+        <th>Message</th> -->
     </tr>
-    <tr v-for="item in list" :key="item" id="item">
+    <tr v-for="(item, index) in lists" :key="item" id="item" :class="{ 'alternate-row': index % 2 === 1 }" >
         <td>{{ item.name}}</td>
         <td>{{ item.email}}</td>
         <td>{{ item.message}}</td>
@@ -98,13 +99,13 @@ export default{
     name:`Contacts`,
     data(){
         return{
-            
-            name: '',
-            email: '',
-            message: '',
+            name:"",
+            email:"",
+            message:"",
             lists:[],
+            tableHeadings: ['name', 'email', 'message'],
+            showTable: false,
 
-           
         }
         
     },
@@ -115,7 +116,7 @@ export default{
                 const docRef = await addDoc(collection(db, "users"),{
                     name: this.name,
                     email: this.email,
-                    message:this.message
+                    message: this.message
                 });
 
             console.log("Documet form with id" , docRef.id);
@@ -127,15 +128,20 @@ export default{
                 console.log("Error adding doc", error)
             }
         },
-        submit:function(name, email,message){
+        submit:function(){
+            console.log("Enter value",this.name, this.email,this.message);
             this.lists.push({
-            'name': name,
-            'email': email,
-             'message': message
-            });
-        
-        
-          
+            // id: this.lists.length + 1,
+            'name' :this.name,
+            'email' :this.email,
+            'message' :this.message  
+           }); 
+           if(this.lists.length === 1) {
+            this.tableHeadings = Object.keys(this.lists[0]);
+            this.showTable = true;
+          }
+
+
         }
     
     }
@@ -153,6 +159,9 @@ export default{
     /* background-color: rgba(54, 65, 64, 0.04); */
     
  }
+ .alternate-row {
+     background-color:  rgba(54, 65, 64, 0.04);
+     }
 
  table tr {
     /* border: 1px solid green; */
@@ -165,11 +174,9 @@ export default{
     /* border-radius: 30%; */
     /* border-bottom-left-radius: 16px; */
 }
-/* 
-table tr:nth-child(n+1){
-    border: 1px saddlebrown;
-} */
-
+#heading{
+    background-color: rgba(54, 65, 64, 0.16);
+}
 table tr  th {
     /* border: 1px solid brown; */
     /* border-radius: 16px; */
@@ -177,7 +184,7 @@ table tr  th {
     width: 350px;
     text-align: center;
     color: #364140;
-    background-color: rgba(54, 65, 64, 0.04);
+    /* background-color: rgba(54, 65, 64, 0.04); */
     font-weight: 700;
     border-radius: 30px;
     
@@ -185,7 +192,7 @@ table tr  th {
 table tr td {
     /* border: 1px solid brown; */
     height:  20px;
-    background-color: rgba(54, 65, 64, 0.04);
+    /* background-color: rgba(54, 65, 64, 0.04); */
     width: 300px;
     text-align: center;
     color: #364140;
